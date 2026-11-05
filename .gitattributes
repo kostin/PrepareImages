@@ -1,0 +1,9 @@
+# Нормализация переводов строк: скрипты macOS/Linux должны остаться с LF,
+# иначе bash не сможет их запустить.
+* text=auto eol=lf
+*.ps1 text eol=crlf
+*.cmd text eol=crlf
+*.bat text eol=crlf
+*.exe binary
+*.jpg binary
+*.png binary
