@@ -39,3 +39,23 @@
 
 ### Осталось
 - Собрать macOS-бинарники в GitHub Actions и приложить к релизу.
+
+## 2026-11-05 — Репозиторий и первый релиз v1.0.0
+
+**Начало:** 2026-11-05 12:20  
+**Завершение:** 2026-11-05 12:45
+
+### Сделано
+- Создан публичный репозиторий https://github.com/kostin/PrepareImages (по образцу ImageResizer).
+- CI собрал все три платформы, smoke-тест прошёл на каждой: Windows x64, macOS Apple Silicon (arm64), macOS Intel (x64).
+- Тег `v1.0.0` → релиз с тремя архивами:
+  - `PrepareImages-macos-arm64.tar.gz` — 11.2 МБ
+  - `PrepareImages-macos-x64.tar.gz` — 12.3 МБ
+  - `PrepareImages-windows-x64.zip` — 14.4 МБ
+- Проверки артефактов: оба macOS-файла — Mach-O 64-bit (magic `0xfeedfacf`) с cputype `0x0100000c` (arm64) и `0x01000007` (x86_64); в каждом бинарнике (включая Windows) найден встроенный base64-профиль sRGB; Windows-артефакт из CI прошёл smoke-тест локально.
+
+### Замечания
+- Бинарники не подписаны и не нотаризованы: при первом запуске на macOS нужен правый клик → «Открыть»
+  либо `xattr -d com.apple.quarantine prepare_images`.
+- В архиве `.tar.gz` права на исполнение сохраняются, `chmod +x` обычно не требуется.
+
